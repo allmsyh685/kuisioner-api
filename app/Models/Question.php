@@ -13,10 +13,12 @@ class Question extends Model
         'question_text',
         'order',
         'is_active',
+        'options',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
+        'options' => 'array',
     ];
 
     public function options()

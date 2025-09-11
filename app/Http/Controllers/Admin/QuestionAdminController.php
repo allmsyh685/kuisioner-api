@@ -42,6 +42,8 @@ class QuestionAdminController extends Controller
             'question_text' => $data['question_text'],
             'order' => $data['order'],
             'is_active' => $data['is_active'] ?? true,
+            // Persist options to satisfy MySQL NOT NULL json column
+            'options' => array_values($data['options']),
         ]);
 
         foreach ($data['options'] as $idx => $text) {
@@ -81,6 +83,8 @@ class QuestionAdminController extends Controller
             'question_text' => $data['question_text'] ?? $question->question_text,
             'order' => $data['order'] ?? $question->order,
             'is_active' => $data['is_active'] ?? $question->is_active,
+            // Keep options json column in sync when provided
+            'options' => array_key_exists('options', $data) ? array_values($data['options']) : $question->options,
         ]);
 
         if (array_key_exists('options', $data)) {
