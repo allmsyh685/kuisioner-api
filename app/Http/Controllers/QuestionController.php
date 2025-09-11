@@ -10,14 +10,14 @@ class QuestionController extends Controller
     public function index()
     {
         $questions = Question::where('is_active', true)
-            ->with('options')
+            ->with('optionItems')
             ->orderBy('order')
             ->get()
             ->map(function ($q) {
                 return [
                     'id' => $q->id,
                     'question_text' => $q->question_text,
-                    'options' => $q->options->map(function ($opt) {
+                    'options' => $q->optionItems->map(function ($opt) {
                         return [
                             'id' => $opt->id,
                             'text' => $opt->option_text,

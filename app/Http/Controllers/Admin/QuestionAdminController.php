@@ -12,11 +12,11 @@ class QuestionAdminController extends Controller
 {
     public function index()
     {
-        $questions = Question::with('options')->orderBy('order')->get()->map(function ($q) {
+        $questions = Question::with('optionItems')->orderBy('order')->get()->map(function ($q) {
             return [
                 'id' => $q->id,
                 'question_text' => $q->question_text,
-                'options' => $q->options->pluck('option_text')->values(),
+                'options' => $q->optionItems->pluck('option_text')->values(),
                 'order' => $q->order,
                 'is_active' => (bool) $q->is_active,
                 'created_at' => optional($q->created_at)->toISOString(),
@@ -54,11 +54,11 @@ class QuestionAdminController extends Controller
             ]);
         }
 
-        $question->load('options');
+        $question->load('optionItems');
         return response()->json(['success' => true, 'data' => [
             'id' => $question->id,
             'question_text' => $question->question_text,
-            'options' => $question->options->pluck('option_text')->values(),
+            'options' => $question->optionItems->pluck('option_text')->values(),
             'order' => $question->order,
             'is_active' => (bool) $question->is_active,
             'created_at' => optional($question->created_at)->toISOString(),
@@ -98,11 +98,11 @@ class QuestionAdminController extends Controller
             }
         }
 
-        $question->load('options');
+        $question->load('optionItems');
         return response()->json(['success' => true, 'data' => [
             'id' => $question->id,
             'question_text' => $question->question_text,
-            'options' => $question->options->pluck('option_text')->values(),
+            'options' => $question->optionItems->pluck('option_text')->values(),
             'order' => $question->order,
             'is_active' => (bool) $question->is_active,
             'created_at' => optional($question->created_at)->toISOString(),

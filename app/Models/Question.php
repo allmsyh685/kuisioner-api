@@ -18,10 +18,9 @@ class Question extends Model
 
     protected $casts = [
         'is_active' => 'boolean',
-        'options' => 'array',
     ];
 
-    public function options()
+    public function optionItems()
     {
         return $this->hasMany(QuestionOption::class, 'question_id')->orderBy('option_order');
     }
