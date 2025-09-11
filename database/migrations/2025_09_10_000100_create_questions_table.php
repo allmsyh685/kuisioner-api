@@ -9,8 +9,8 @@ return new class extends Migration {
     {
         Schema::create('questions', function (Blueprint $table) {
             $table->id();
-            $table->string('question_text');
-            $table->json('options');
+            $table->string('question_text', 500);
+            $table->enum('question_type', ['single_choice'])->default('single_choice');
             $table->unsignedInteger('order')->default(0);
             $table->boolean('is_active')->default(true);
             $table->timestamps();

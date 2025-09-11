@@ -13,7 +13,7 @@ class Question extends Model
         'question_text',
         'order',
         'is_active',
-        'options',
+        // no direct options JSON column in MySQL schema
     ];
 
     protected $casts = [
