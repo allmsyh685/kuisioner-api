@@ -139,13 +139,17 @@ class ResponseAdminController extends Controller
                 ->get(['ra.question_id', 'qo.option_text', 'ra.answer_text'])
                 ->keyBy('question_id');
 
+            // Format timestamps properly - handle both string and Carbon instances
+            $createdAt = $r->created_at ? \Carbon\Carbon::parse($r->created_at)->format('Y-m-d H:i:s') : '';
+            $updatedAt = $r->updated_at ? \Carbon\Carbon::parse($r->updated_at)->format('Y-m-d H:i:s') : '';
+
             $row = [
                 $r->id,
                 $r->name,
                 $r->age,
                 $r->location,
-                optional($r->created_at)->toDateTimeString(),
-                optional($r->updated_at)->toDateTimeString(),
+                $createdAt,
+                $updatedAt,
             ];
 
             foreach ($questions as $q) {
