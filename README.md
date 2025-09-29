@@ -7,6 +7,20 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## UML Diagrams
+
+### Class Diagram (`classDiagram.png`)
+
+The class diagram shows the application's classes, their attributes and methods, and how they relate (associations, aggregations, compositions, inheritance). It helps understand the structure and responsibilities in the codebase.
+
+![Class Diagram](./classDiagram.png)
+
+### ER Diagram (`ER-Diagram.png`)
+
+The ER (Entity-Relationship) diagram depicts the database model: entities (tables), their attributes (columns), and relationships (one-to-many, many-to-many). Use it to understand data storage and constraints.
+
+![ER Diagram](./ER-Diagram.png)
+
 ## About Laravel
 
 Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
