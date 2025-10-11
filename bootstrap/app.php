@@ -15,11 +15,12 @@ return Application::configure(basePath: dirname(__DIR__))
     ->withMiddleware(function (Middleware $middleware): void {
         $middleware->alias([
             'shared.token' => \App\Http\Middleware\SharedTokenAuth::class,
+            'cors' => \App\Http\Middleware\CorsMiddleware::class,
         ]);
         
-        // Enable CORS for API routes
+        // Enable CORS for API routes - use our custom middleware first
         $middleware->api(prepend: [
-            \Illuminate\Http\Middleware\HandleCors::class,
+            \App\Http\Middleware\CorsMiddleware::class,
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {

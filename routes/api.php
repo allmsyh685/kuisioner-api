@@ -2,6 +2,16 @@
 
 use Illuminate\Support\Facades\Route;
 
+// Handle preflight OPTIONS requests for CORS
+Route::options('{any}', function () {
+    return response('', 200)
+        ->header('Access-Control-Allow-Origin', request()->header('Origin') ?: 'https://game-kuisioner.vercel.app')
+        ->header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS')
+        ->header('Access-Control-Allow-Headers', 'Content-Type, Authorization, X-Requested-With, Accept, X-XSRF-TOKEN')
+        ->header('Access-Control-Allow-Credentials', 'true')
+        ->header('Access-Control-Max-Age', '86400');
+})->where('any', '.*');
+
 // Apply shared token middleware to all API routes
 Route::middleware('shared.token')->group(function () {
     // Public endpoints (now require Bearer token)
